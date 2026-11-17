@@ -1,0 +1,25 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#3b3fb4"><link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/static/icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Permis Express">
+<title>{% block t %}Permis Express{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<header><a class="logo" href="/">Permis Express</a><button id="burger" aria-label="Menu">☰</button>
+<nav>
+<div class="dd"><a href="/financement">Financement</a><div><a href="/financement">Simulateur de paiement</a><a href="/code">Code en ligne</a></div></div>
+<div class="dd"><a href="/stages">Permis B accéléré</a><div><a href="/stages?duree=10">Formation 10 jours</a><a href="/stages?duree=14">Formation 14 jours</a></div></div>
+<div class="dd"><a href="/contact#agences">Où nous trouver</a><div>{% for v in villes_nav %}<a href="/contact#{{ v|lower }}">{{ v }}</a>{% endfor %}</div></div>
+<a href="/moniteur">Recrutement</a></nav>
+<div class="right"><a class="tel" href="{{ contact.tel_href }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg> {{ contact.tel }}</a>
+<a class="pill" href="{{ '/espace' if session.name else '/inscription' }}">{{ 'Mon espace' if session.name else "Je m'inscris" }}</a>
+<a class="user" href="{{ '/deconnexion' if session.name else '/connexion' }}" title="{{ 'Se déconnecter' if session.name else 'Se connecter' }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 15-5 16 0"/></svg></a></div></header>
+{% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+<main>{% block c %}{% endblock %}</main>
+<footer><b>Permis Express</b> · Appelez-nous au <a href="{{ contact.tel_href }}">{{ contact.tel }}</a> · <a href="/contact">Contactez-nous</a> · <a href="{{ wa() }}" target="_blank" rel="noopener">WhatsApp</a><br><button id="inst" class="btn" hidden>Installer l'application</button><br><small>Projet de démonstration : stages et données fictifs.</small></footer>
+<div class="tabbar"><a href="/">🏠<span>Accueil</span></a><a href="/stages">🚗<span>Stages</span></a><a href="/code">📝<span>Code</span></a><a href="/contact">💬<span>Contact</span></a><a href="{{ '/espace' if session.name else '/connexion' }}">👤<span>{{ 'Mon espace' if session.name else 'Compte' }}</span></a></div>
+<a id="wab" href="{{ wa() }}" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.9 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2s-.2-.2-.5-.3z"/></svg></a>
+<button id="chatb" aria-label="Contactez-nous"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg></button>
+<div id="chatp"><h4>Une question ? Écrivez-nous</h4><p>Un conseiller vous répond vite, ou appelez le <a href="{{ contact.tel_href }}">{{ contact.tel }}</a>.</p>
+<a class="btn wa" href="{{ wa() }}" target="_blank" rel="noopener" style="width:100%;text-align:center;margin-bottom:12px">Discuter sur WhatsApp</a><form id="cf"><input name="name" placeholder="Votre nom" required><input name="email" type="email" placeholder="Votre e-mail" required><textarea name="body" rows="3" placeholder="Votre message" required></textarea><button class="btn">Envoyer</button></form><p id="cm"></p></div>
+<script>const cp=document.getElementById("chatp");document.getElementById("chatb").onclick=()=>cp.classList.toggle("open");
+document.getElementById("cf").onsubmit=async e=>{e.preventDefault();const f=e.target;await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(f)))});f.reset();document.getElementById("cm").textContent="Message envoyé. Merci !"};</script>
+<script>document.getElementById("burger").onclick=()=>document.querySelector("nav").classList.toggle("open");
+let ip;const inst=document.getElementById("inst");addEventListener("beforeinstallprompt",e=>{e.preventDefault();ip=e;inst.hidden=false});
+inst.onclick=async()=>{ip.prompt();await ip.userChoice;inst.hidden=true};
+if("serviceWorker" in navigator)navigator.serviceWorker.register("/sw.js");</script></body></html>

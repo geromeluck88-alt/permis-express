@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block c %}<div class="wrap narrow"><h1>Simulateur de paiement</h1>
+<label>Prix du stage (€)<input id="p" type="number" value="1490"></label><label>Montant pris en charge par le CPF (€)<input id="c" type="number" value="0"></label>
+<label>Nombre de mensualités<select id="n"><option>3</option><option>10</option><option>12</option><option>24</option></select></label>
+<p class="sim" id="o"></p></div>
+<script>const f=()=>{const r=Math.max(0,+p.value-+c.value),n=+document.getElementById("n").value;o.textContent="Reste à payer "+r+" € : "+(r/n).toFixed(2)+" € par mois sur "+n+" mois."};
+["p","c","n"].forEach(i=>document.getElementById(i).oninput=f);f();</script>{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block c %}<div class="wrap"><h1>Mon espace</h1><p><a class="btn wa" target="_blank" rel="noopener" href="{{ wa('Bonjour, ici ' ~ session.name ~ '. Question sur mon planning.') }}">Contacter un admin sur WhatsApp</a></p>
+{% for s, plan, exam in data %}<article class="wide"><h3>{{ s.city }} · {{ s.kind }}</h3>
+<p>Date d'examen garantie au plus tard le <span class="plate">{{ exam|fr }}</span></p>
+<table>{% for d, t in plan %}<tr><td>{{ d|fr }}</td><td>{{ t }}</td></tr>{% endfor %}</table></article>
+{% else %}<p>Aucun stage réservé. <a href="/stages">Choisir un stage</a></p>{% endfor %}</div>{% endblock %}

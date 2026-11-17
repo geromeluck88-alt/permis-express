@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block c %}<div class="wrap narrow"><h1>Code de la route : test</h1><div id="q"></div><p id="r" class="sim"></p></div>
+<script>const Q={{ quiz|tojson }};let i=0,s=0;const q=document.getElementById("q");
+function show(){if(i>=Q.length){q.innerHTML="";document.getElementById("r").textContent="Score : "+s+" / "+Q.length;return}
+const [t,o,a]=Q[i];q.innerHTML="<h3>"+t+"</h3>"+o.map((x,k)=>"<button class='opt' data-k='"+k+"'>"+x+"</button>").join("");
+q.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const ok=+b.dataset.k===a;if(ok)s++;b.classList.add(ok?"ok":"ko");
+q.querySelectorAll(".opt").forEach(x=>x.disabled=true);setTimeout(()=>{i++;show()},900)})}show();</script>{% endblock %}

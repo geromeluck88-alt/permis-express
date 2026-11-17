@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block c %}<div class="wrap"><h1>Contactez-nous</h1><p>Un conseiller vous répond par téléphone, par message ou en agence.</p>
+<div class="grid"><article><h3>Par WhatsApp</h3><p>Écrivez directement à un administrateur : réponse rapide.</p><a class="btn wa" target="_blank" rel="noopener" href="{{ wa() }}">Ouvrir WhatsApp</a></article>
+<article><h3>Par téléphone</h3><p>Du lundi au samedi, 9 h – 19 h.</p><a class="btn" href="{{ contact.tel_href }}">{{ contact.tel }}</a></article>
+<article><h3>Par e-mail</h3><p>Réponse sous 24 h.</p><a class="btn" href="mailto:{{ contact.email }}">Écrire un e-mail</a></article>
+<article><h3>Par message</h3><p>Le formulaire ci-dessous, ou la bulle en bas à droite de chaque page.</p><a class="btn" href="#formulaire">Écrire</a></article></div>
+<h2 id="formulaire" style="margin-top:56px">Écrivez-nous</h2>
+<form method="post" style="max-width:560px"><label>Nom<input name="name" required></label><label>E-mail<input type="email" name="email" required></label>
+<label>Sujet<select name="sujet"><option>Question sur un stage</option><option>Financement</option><option>Examen</option><option>Autre</option></select></label>
+<label>Votre message<textarea name="body" rows="5" required></textarea></label><button class="btn big">Envoyer</button></form>
+<h2 id="agences" style="margin-top:56px">Nos agences</h2><div class="grid">{% for v in villes_nav %}<article id="{{ v|lower }}"><h3>{{ v }}</h3><p>Adresse à renseigner.<br>Lundi – samedi, 9 h – 19 h</p><a class="btn ghost" href="{{ contact.tel_href }}">Appeler l'agence</a></article>{% endfor %}</div></div>{% endblock %}

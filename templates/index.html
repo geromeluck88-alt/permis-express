@@ -1,0 +1,39 @@
+{% extends "base.html" %}{% macro ph(n, alt) %}<figure class="ph" data-e="{{ {'hero':'🚗','succes':'🎉','cles':'🔑','moniteur':'🧑‍🏫','equipe':'🤝'}[n] }}"><img src="{{ url_for('static', filename='img/' ~ n ~ '.jpg') }}" alt="{{ alt }}" onerror="this.parentElement.classList.add('noimg');this.remove()"></figure>{% endmacro %}
+{% block c %}
+<section class="hero split"><div><h1>Le permis en deux semaines. Une date d'examen sous 10 jours.</h1>
+<p>Un moniteur unique, un planning connu dès l'inscription, un entraînement sur votre centre d'examen.</p>
+<a class="btn big" href="/stages">Voir les stages</a> <a class="btn big ghost" href="/contact">Contactez-nous</a></div>{{ ph('hero','Deux jeunes regardent un téléphone') }}</section>
+<section class="wrap"><h2>Deux rythmes, un même objectif</h2><div class="grid">
+<article><span class="tag">10 jours</span><h3>Formation intensive</h3><p>2 h de conduite et 1 h de code par jour, pour passer l'examen au plus vite.</p><a class="btn" href="/stages?duree=10">Voir les stages</a></article>
+<article><span class="tag">14 jours</span><h3>Formation progressive</h3><p>1 h 30 de conduite et 1 h de code par jour : un rythme plus doux, la même préparation à l'examen.</p><a class="btn" href="/stages?duree=14">Voir les stages</a></article></div></section>
+<section class="wrap"><h2>Comment ça marche</h2><div class="steps">
+<div><b>1</b><h3>Choisissez un stage</h3><p>Ville, dates et type de boîte.</p></div>
+<div><b>2</b><h3>Recevez votre planning</h3><p>Chaque journée est détaillée avant le départ.</p></div>
+<div><b>3</b><h3>Roulez 10 ou 14 jours</h3><p>Avec le même moniteur du début à la fin.</p></div>
+<div><b>4</b><h3>Passez l'examen</h3><p>Date garantie sous 10 jours ouvrés.</p></div></div></section>
+<section id="methode" class="wrap"><h2>Six engagements</h2><div class="grid">
+<article><h3>Un moniteur, un élève</h3><p>Le même enseignant vous suit et corrige chaque erreur tout de suite.</p></article>
+<article><h3>Planning avant le stage</h3><p>Vos heures de conduite sont connues dès la réservation.</p></article>
+<article><h3>Examen sous 10 jours ouvrés</h3><p>Nous réservons votre place. En cas d'échec, vous repassez vite.</p></article>
+<article><h3>Entraînement sur place</h3><p>Examens blancs sur le centre d'examen, avec la voiture du jour J.</p></article>
+<article><h3>Code et fiches en ligne</h3><p>Tests interactifs et conseils anti-stress. <a href="/code">Essayer un test</a></p></article>
+<article><h3>Paiement souple</h3><p>En 3, 10, 12 ou 24 fois, avec le CPF. <a href="/financement">Simuler</a></p></article></div></section>
+<section class="wrap split rev">{{ ph('moniteur','Un moniteur tend les clés devant l\'agence') }}<div><h2>Un moniteur qui ne vous lâche pas</h2>
+<p>Il connaît vos points forts dès le premier jour et ajuste chaque séance. Vous n'expliquez jamais deux fois la même chose.</p>
+<a class="btn" href="/stages">Réserver avec un moniteur</a></div></section>
+<section class="wrap split"><div><h2>Votre place d'examen suit votre résultat de près</h2>
+<p>Après le stage, votre espace affiche la date d'examen et le planning de vos derniers jours. Plus besoin de relancer l'administration.</p>
+<a class="btn" href="/inscription">Créer mon compte</a></div>{{ ph('succes','Une élève découvre son résultat sur son téléphone') }}</section>
+<section class="wrap split rev">{{ ph('equipe','L\'équipe devant l\'agence') }}<div><h2>Des agences, de vraies personnes</h2>
+<p>Passez nous voir à Paris, Lyon, Marseille, Toulouse ou Lille, ou écrivez à un conseiller. Vous cherchez un métier ? Nous recrutons des moniteurs.</p>
+<a class="btn" href="/contact">Parler à un conseiller</a> <a class="btn ghost dark" href="/moniteur">Devenir moniteur</a></div></section>
+<section class="wrap"><h2>Ils ont roulé 10 jours</h2><p class="note">Témoignages d'exemple, à remplacer par de vrais avis.</p><div class="grid">
+<article class="quote"><p>Le planning reçu avant le stage m'a évité tout stress. Je savais où j'allais chaque matin.</p><b>Amina, Lyon</b></article>
+<article class="quote"><p>Même moniteur tous les jours : il corrigeait mes erreurs avant qu'elles deviennent des habitudes.</p><b>Karim, Paris</b></article>
+<article class="quote"><p>Les examens blancs sur le vrai parcours m'ont rassuré. Résultat le jour J.</p><b>Léa, Lille</b></article></div></section>
+<section class="wrap narrow"><h2>Questions fréquentes</h2>
+<details><summary>Combien de temps dure le stage ?</summary><p>10 jours ouvrés consécutifs, avec conduite et code chaque jour.</p></details>
+<details><summary>Et si j'échoue à l'examen ?</summary><p>Un stage de représentation permet d'obtenir une nouvelle date rapidement.</p></details>
+<details><summary>Puis-je payer en plusieurs fois ?</summary><p>Oui, en 3, 10, 12 ou 24 mensualités. Le CPF peut couvrir une partie du prix.</p></details>
+<details><summary>Faut-il déjà connaître le code ?</summary><p>Non. Des tests et fiches en ligne vous préparent pendant le stage.</p></details></section>
+{% endblock %}

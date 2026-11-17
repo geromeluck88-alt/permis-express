@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block c %}<div class="wrap"><div class="split" style="margin-bottom:30px"><div><h1>Permis B accéléré</h1><p>Deux rythmes au choix : 10 jours intensifs ou 14 jours plus progressifs. Votre planning vous est remis dès la réservation.</p></div>
+<figure class="ph" data-e="🔑"><img src="{{ url_for('static', filename='img/cles.jpg') }}" alt="Remise des clés" onerror="this.parentElement.classList.add('noimg');this.remove()"></figure></div>
+<p class="filters"><a class="{{ '' if not duree else '' }}{{ 'on' if not duree }}" href="/stages{{ '?ville=' ~ ville if ville }}">Toutes durées</a>
+<a class="{{ 'on' if duree == '10' }}" href="/stages?duree=10{{ '&ville=' ~ ville if ville }}">10 jours</a>
+<a class="{{ 'on' if duree == '14' }}" href="/stages?duree=14{{ '&ville=' ~ ville if ville }}">14 jours</a></p>
+<p class="filters"><a class="{{ 'on' if not ville }}" href="/stages{{ '?duree=' ~ duree if duree }}">Toutes villes</a>{% for v in villes %}<a class="{{ 'on' if v == ville }}" href="/stages?ville={{ v }}{{ '&duree=' ~ duree if duree }}">{{ v }}</a>{% endfor %}</p>
+<div class="grid">{% for s in rows %}<article><span class="tag">Formation {{ s.duration or 10 }} jours</span><h3>{{ s.city }}</h3>
+<p>Début le <b>{{ s.start|fr }}</b><br>{{ s.kind }}<br><small>{{ '2 h de conduite + 1 h de code par jour' if (s.duration or 10) == 10 else '1 h 30 de conduite + 1 h de code par jour, rythme allégé' }}</small></p>
+<p class="price">{{ s.price }} €</p><div class="row"><form method="post" action="/reserver/{{ s.id }}"><button class="btn">Réserver</button></form><a class="btn wa" target="_blank" rel="noopener" href="{{ wa('Bonjour, je souhaite des informations sur le stage de ' ~ (s.duration or 10) ~ ' jours a ' ~ s.city ~ ' du ' ~ (s.start|fr) ~ '.') }}">WhatsApp</a></div></article>{% else %}<p>Aucun stage pour ce filtre.</p>{% endfor %}</div></div>{% endblock %}

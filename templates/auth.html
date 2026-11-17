@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block c %}<div class="wrap narrow"><h1>{{ 'Créer mon compte' if mode == 'inscription' else 'Connexion' }}</h1>
+<form method="post">{% if mode == 'inscription' %}<label>Nom<input name="name" required></label>{% endif %}
+<label>E-mail<input type="email" name="email" required></label><label>Mot de passe<input type="password" name="pw" minlength="6" required></label>
+<button class="btn big">{{ "Je m'inscris" if mode == 'inscription' else 'Me connecter' }}</button></form></div>{% endblock %}

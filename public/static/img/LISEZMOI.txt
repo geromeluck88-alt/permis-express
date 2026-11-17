@@ -1,0 +1,1 @@
+Photos du site : hero.jpg, succes.jpg, cles.jpg, moniteur.jpg, equipe.jpg. Remplacez-les par vos propres photos quand vous voulez (mêmes noms).

@@ -1,0 +1,19 @@
+PERMIS EXPRESS - lancement en local (Windows)
+
+METHODE FACILE
+1. Clic droit sur permis-express.zip > "Extraire tout" > Extraire.
+2. Ouvrez le dossier extrait : vous devez voir directement app.py, lancer.bat, templates, static.
+   (Si vous voyez un 2e dossier permis-express a l'interieur, ouvrez-le.)
+3. Double-cliquez sur lancer.bat.
+4. Le navigateur s'ouvre sur http://127.0.0.1:5000. Pour arreter : fermez la fenetre noire.
+
+PREREQUIS : Python 3.9+ installe (https://www.python.org/downloads/, cocher "Add python.exe to PATH").
+
+METHODE MANUELLE (terminal ouvert DANS le dossier qui contient app.py)
+  python -m venv venv
+  venv\Scripts\activate
+  pip install -r requirements-local.txt
+  python app.py
+
+UTILISATION : s'inscrire > Stages > Reserver > Mon espace (planning + date d'examen).
+Pour repartir de zero : supprimez le fichier permis.db.
